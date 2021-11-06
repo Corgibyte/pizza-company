@@ -36,3 +36,15 @@ Pizza.prototype.removeTopping = function(topping) {
   this.toppings = updatedToppings;
   return removedTopping;
 }
+
+function Order() {
+  this.pizzas = {};
+  this.currentId = 0;
+}
+
+Order.prototype.addPizza = function(pizza) {
+  this.currentId++;
+  pizza.id = this.currentId;
+  this.pizzas[this.currentId] = pizza;
+  return true;
+};

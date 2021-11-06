@@ -123,7 +123,7 @@ Returns an int that represents the cost (in cents) of the current order.
     100;
 
 #### Description: Order.prototype.addPizza(pizza)
-Adds the given pizza to the order. Will return true if pizza is added.
+Assigns the given pizza an id and adds it to the order. Will return true if pizza is added.
 
 **Test:** It should add the given pizza to an empty order.
 **Code:**
@@ -133,7 +133,7 @@ Adds the given pizza to the order. Will return true if pizza is added.
     testOrder.addPizza(testPizza);
     testOrder;
 **Result:**
-    Order{pizzas:[testPizza]}
+    Order{pizzas: {testPizza}}
 
 **Test:** It should add the given pizza to an order that already had a pizza.
 **Code:**
@@ -145,7 +145,7 @@ Adds the given pizza to the order. Will return true if pizza is added.
     testOrder.addPizza(testPizza2);
     testOrder;
 **Result:**
-    Order{pizzas:[testPizza1, testPizza2]}
+    Order{pizzas:{1: testPizza1, 2: testPizza2}}
 
 #### Description: Pizza(size, toppingsArray)
 Creates a pizza object with the given size and toppings array. Sizes can be "sm", "md", or "lg." Toppings must be given in an array of toppings where no two Topping elements share the same name, but can be an empty array.
