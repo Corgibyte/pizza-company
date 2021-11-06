@@ -142,24 +142,36 @@ let currentOrder = {};
 function updateToppings() {
   const toppingSelector = $("#toppingList");
   for (let i = 0; i < pizzaStore.availableToppings.length; i++) {
+    const divOpen = "<div class='form-check'>"
     const inputLine = "<input type='checkbox' id='topping" + i + "' name='topping" + i + "' val='" + i + "'>";
     const labelLine = "<label for='topping" + i + "'>" + pizzaStore.availableToppings[i].name + " (" + pizzaStore.availableToppings[i].price + ")</label>";
-    toppingSelector.append(inputLine + labelLine);
+    const divClose = "</div>"
+    toppingSelector.append(divOpen + inputLine + labelLine + divClose);
   }
 }
 
 function updateOrderOutput(order) {
+  const pizzaListSel = $("#pizzaList");
+  pizzaListSel.html("");
   for (let i = 1; i <= order.currentId; i++) {
-    const pizzaListSel = $("#pizzaList");
     if (order.pizzas[i] !== undefined) {
       let liString = "<li>" + order.pizzas[i].size + " pizza with: <ul>";
       order.pizzas[i].toppings.forEach(function(topping) {
         liString = liString.concat("<li>" + topping.name + "</li>");
       });
-      liString = liString.concat("</ol></li>");
+      liString = liString.concat("</ol>");
+      liString = liString.concat("<button id='removePizza" + i + "' class='btn btn-secondary'>Remove</button></li>");
       pizzaListSel.append(liString);
+      addRemovePizzaListener(i);
     }
   }
+}
+
+function addRemovePizzaListener(id) {
+  $("#removePizza" + id).click(function() {
+    currentOrder.removePizza(id);
+    updateOrderOutput(currentOrder);
+  });
 }
 
 $(document).ready(function() {
@@ -171,21 +183,20 @@ $(document).ready(function() {
 
   $("#pizzaForm").submit(function(event) {
     event.preventDefault();
-    let newOrder = new Order();
     let toppings = [];
     for (let i = 0; i < pizzaStore.availableToppings.length; i++) {
       if ($("#topping" + i).is(":checked")) {
         toppings.push(pizzaStore.availableToppings[i]);
       }
     }
-    newOrder.addPizza(new Pizza($("input[name='pizzaSize']:checked").val(), toppings));
-    pizzaStore.addOrder(newOrder);
-    updateOrderOutput(newOrder);
-    console.log(newOrder);
+    currentOrder.addPizza(new Pizza($("input[name='pizzaSize']:checked").val(), toppings));
+    updateOrderOutput(currentOrder);
   });
 
   $("#welcomeForm").submit(function(event) {
     event.preventDefault();
-
+    currentOrder = new Order($("#nameForm").val(), parseInt($("#latForm").val()), parseInt($("#longForm").val()));
+    $("#welcome").hide();
+    $("#order").show();
   });
 });
