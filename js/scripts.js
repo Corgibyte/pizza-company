@@ -144,6 +144,20 @@ function updateToppings() {
   }
 }
 
+function updateOrderOutput(order) {
+  for (let i = 1; i <= order.currentId; i++) {
+    const pizzaListSel = $("#pizzaList");
+    if (order.pizzas[i] !== undefined) {
+      let liString = "<li>" + order.pizzas[i].size + " pizza with: <ul>";
+      order.pizzas[i].toppings.forEach(function(topping) {
+        liString = liString.concat("<li>" + topping.name + "</li>");
+      });
+      liString = liString.concat("</ol></li>");
+      pizzaListSel.append(liString);
+    }
+  }
+}
+
 $(document).ready(function() {
   const testToppings = [new Topping("pepperoni", 125), new Topping("mushrooms", 200), new Topping("carrots", 111)];
   testToppings.forEach(function(topping) {
@@ -162,6 +176,7 @@ $(document).ready(function() {
     }
     newOrder.addPizza(new Pizza($("input[name='pizzaSize']:checked").val(), toppings));
     pizzaStore.addOrder(newOrder);
-    console.log(pizzaStore);
+    updateOrderOutput(newOrder);
+    console.log(newOrder);
   });
 });
