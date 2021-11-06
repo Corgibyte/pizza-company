@@ -56,7 +56,7 @@ Removes the toppings from the store's available toppings. If the listed topping 
     false
     [Topping {name:"testA", price:75}]
 
-#### Description: Store.prototype.assignId(order) 
+#### Description: Store.prototype.addOrder(order) 
 Assigns an order ID to the given order and adds it to the store's orders.
 
 **Test:** If given its first order, it should assign the first ID and add it to the list.
@@ -66,7 +66,7 @@ Assigns an order ID to the given order and adds it to the store's orders.
     const testPizza = new Pizza("md", testToppings);
     const testOrder = new Order();
     testOrder.addPizza(testPizza);
-    testStore.assignId(testOrder);
+    testStore.addOrder(testOrder);
     testOrder.id;
     testStore.orders;
 **Result:**
@@ -83,8 +83,8 @@ Assigns an order ID to the given order and adds it to the store's orders.
     const testOrder1 = new Order();
     testOrder1.addPizza(testPizza1);
     testOrder2.addPizza(testPizza2);
-    testStore.assignId(testOrder1);
-    testStore.assignId(testOrder2);
+    testStore.addOrder(testOrder1);
+    testStore.addOrder(testOrder2);
     testOrder2.id;
     testStore.orders;
 **Result:**
