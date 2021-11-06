@@ -36,13 +36,60 @@ Adds the given topping to the store's available toppings. If a topping of the sa
 #### Description: Store.prototype.removeAvailableToppings(topping)
 Removes the toppings from the store's available toppings. If the listed topping is not found, no change will be made and the method will return false. If the topping is found and removed it will return true.
 
-**Test:** It should add a topping that isn't already available.
+**Test:** It should remove and return true a topping that is given and in the store's list.
 **Code:**
     const testStore = new Store();
     testStore.addAvailableToppings(new Topping("testA", 75));
+    testStore.removeAvailableToppings(new Topping("testA", 75))
     testStore.availableToppings;
 **Result:**
-    [Topping {name: "testA", price: 75}]
+    true
+    []
+
+**Test:** It should not change a store's available toppings and return false if the given topping is not in the store's list.
+**Code:**
+    const testStore = new Store();
+    testStore.addAvailableToppings(new Topping("testA", 75));
+    testStore.removeAvailableToppings(new Topping("testB", 75))
+    testStore.availableToppings;
+**Result:**
+    false
+    [Topping {name:"testA", cost:75}]
+
+#### Description: Store.prototype.assignId(order) 
+Assigns an order ID to the given order and adds it to the store's orders.
+
+**Test:** If given its first order, it should assign the first ID and add it to the list.
+**Code:**
+    const testStore = new Store();
+    const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
+    const testPizza = new Pizza("md", testToppings);
+    const testOrder = new Order();
+    testOrder.addPizza(testPizza);
+    testStore.assignId(testOrder);
+    testOrder.id;
+    testStore.orders;
+**Result:**
+    1;
+    {1:Order{...}}
+
+**Test:** If given its second order, it should assign the second ID and add it to the list.
+**Code:**
+    const testStore = new Store();
+    const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
+    const testPizza1 = new Pizza("md", testToppings);
+    const testPizza2 = new Pizza("md", testToppings);
+    const testOrder1 = new Order();
+    const testOrder1 = new Order();
+    testOrder1.addPizza(testPizza1);
+    testOrder2.addPizza(testPizza2);
+    testStore.assignId(testOrder1);
+    testStore.assignId(testOrder2);
+    testOrder2.id;
+    testStore.orders;
+**Result:**
+    2;
+    {1:Order{...},2:Order{...}}
 
 #### Description: Order()
 Creates an Order object without any assigned id or pizzas.
@@ -70,39 +117,108 @@ Returns an int that represents the cost (in cents) of the current order.
     const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
     const testPizza = new Pizza("md", testToppings);
     const testOrder = new Order();
-    testOrder.addPizza(new Pizza(testToppings));
+    testOrder.addPizza(testPizza);
     testOrder.getCost();
 **Result:**
     100;
 
+#### Description: Order.prototype.addPizza(pizza)
+Adds the given pizza to the order. Will return true if pizza is added.
 
-Store
-  Properties
-    AvailableToppings
-    Orders
-  Methods
-    addAvailableToppings(toppingsArray) - bool
-    removeAvailableToppings(toppingsArray) - bool
-    assignOrderId(order) - int
+**Test:** It should add the given pizza to an empty order.
+**Code:**
+    const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
+    const testPizza = new Pizza("md", testToppings);
+    const testOrder = new Order();
+    testOrder.addPizza(testPizza);
+    testOrder;
+**Result:**
+    Order{pizzas:[testPizza]}
 
-Order
-  Properties
-    Pizzas
-    orderId
-  Methods
-    getCost() - int
-    addPizza(pizza) - bool
+**Test:** It should add the given pizza to an order that already had a pizza.
+**Code:**
+    const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
+    const testPizza1 = new Pizza("md", testToppings);
+    const testPizza2 = new Pizza("md", testToppings);
+    const testOrder = new Order();
+    testOrder.addPizza(testPizza1);
+    testOrder.addPizza(testPizza2);
+    testOrder;
+**Result:**
+    Order{pizzas:[testPizza1, testPizza2]}
 
-Pizza
-  Properties
-    Size
-    Toppings
-  Methods
-    getCost()
-    addToppings(toppingsArray) - bool
-    removeToppings(toppingsArray) - bool
+#### Description: Pizza(size, toppingsArray)
+Creates a pizza object with the given size and toppings array. Sizes can be "sm", "md", or "lg." Toppings must be given in an array of toppings, but can be an empty array.
 
-Topping
-  Description
-  Price
+**Test:** It should return a pizza with the given size and toppings.
+**Code:**
+    const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
+    const testPizza1 = new Pizza("md", testToppings);
+    testPizza1;
+**Result:**
+    Pizza{size:"md", [Topping{name:"testA", cost:25}, Topping{name:"testB", cost:75}]}
 
+#### Description: Pizza.prototype.addTopping(topping)
+Adds the given topping to the pizza. If a topping with the same name already exists, it will update the price of the topping. Will return true if topping is added; otherwise will return false. 
+
+**Test:** It should add a given topping to the pizza if it isn't already on the pizza.
+**Code:**
+    const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
+    const testPizza = new Pizza("md", testToppings);
+    testPizza.addTopping(new Topping("testC", 50));
+    testPizza;
+**Result:**
+    Pizza{size:"md", [Topping{name:"testA", cost:25}, Topping{name:"testB", cost:75}, Topping{name:"testC", cost:50}]}
+
+**Test:** It should update the price of a given topping if it's already on the pizza.
+**Code:**
+    const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
+    const testPizza = new Pizza("md", testToppings);
+    testPizza.addTopping(new Topping("testB", 50));
+    testPizza;
+**Result:**
+    Pizza{size:"md", [Topping{name:"testA", cost:25}, Topping{name:"testB", cost:50}]}
+
+#### Description: Pizza.prototype.removeTopping(topping)
+Removes the given topping from the pizza. Topping must match both name and price to be removed. If topping is removed will return, otherwise will return false.
+
+**Test:** It should remove a given topping if it is on the pizza.
+**Code:**
+    const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
+    const testPizza = new Pizza("md", testToppings);
+    testPizza.removeTopping(new Topping("testA", 25));
+    testPizza;
+**Result:**
+    true
+    Pizza{size:"md", [Topping{name:"testB", cost:75}]}
+
+**Test:** It should not remove a given topping to the pizza if it isn't on the pizza.
+**Code:**
+    const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
+    const testPizza = new Pizza("md", testToppings);
+    testPizza.removeTopping(new Topping("testC", 25));
+    testPizza;
+**Result:**
+    false
+    Pizza{size:"md", [Topping{name:"testA", cost:25}, Topping{name:"testB", cost:50}]}
+
+#### Description: Pizza.prototype.getCost()
+Returns cost of the pizza (in cents).
+
+**Test:** It should correctly calculate the cost of a pizza.
+**Code:** 
+    const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
+    const testPizza = new Pizza("md", testToppings);
+    testPizza.getCost();
+**Result:**
+    TODO
+
+#### Description: Topping(name, price)
+Creates a new topping object with the given name and price. Price must be in cents and must be a positive integer.
+
+**Test:** It should return a Topping object with the given name and price.
+**Code:**
+    const testTopping = new Topping("testA", 50);
+    testTopping;
+**Result:**
+    Topping{name:"testA", 50}
