@@ -17,9 +17,10 @@
     </div>
     <div id="welcome">
       <h2>Welcome to Orbital Pizza.</h2>
+      <p>Orbital pizza is dedicated to delivering the finest pizzas anywhere in the Northern hemisphere within 5 minutes of order.</p>
       <form id="welcomeForm">
         <div class="form-row">
-          <div class="form-group col-lg-6">
+          <div class="form-group col-lg-5">
             <input type="text" id="nameForm" class="form-control" placeholder="Name">
           </div>
           <div class="form-group col-lg-3">
@@ -28,31 +29,33 @@
           <div class="form-group col-lg-3">
             <input type="number" id="longForm" class="form-control" min=-180 max=180 placeholder="Longitude">
           </div>
-          <button type="submit" class="btn btn-secondary">New Order</button>
         </div>
+        <button type="submit" class="btn btn-secondary">New Order</button>
       </form>
     </div>
     <div id="order">
       <div class="row">
         <div class="col-lg-6" id="leftPane">
           <form id="pizzaForm" class="form-group">
-            <h4>Please select pizza size:</h4>
-            <div class="form-check">
-              <input type="radio" class="form-check-input" id="pizzaSizeSm" name="pizzaSize" value="sm">
-              <label for="pizzaSizeSm" class="form-check-label">Small</label> 
+            <div id="pizzaOptions">
+              <h4>Please select pizza size:</h4>
+              <div class="form-check">
+                <input type="radio" class="form-check-input" id="pizzaSizeSm" name="pizzaSize" value="sm">
+                <label for="pizzaSizeSm" class="form-check-label">Small</label> 
+              </div>
+              <div class="form-check">
+                <input type="radio" class="form-check-input" id="pizzaSizeMd" name="pizzaSize" value="md">
+                <label for="pizzaSizeMd" class="form-check-label">Medium</label> 
+              </div>
+              <div class="form-check">
+                <input type="radio" class="form-check-input" id="pizzaSizeLg" name="pizzaSize" value="lg">
+                <label for="pizzaSizeLg" class="form-check-label">Large</label> 
+              </div>
+              <div id="toppingList">            
+                <h4>Please select pizza toppings:</h4>
+              </div>
+              <button type="submit" class="btn btn-secondary">Add to Order</button>
             </div>
-            <div class="form-check">
-              <input type="radio" class="form-check-input" id="pizzaSizeMd" name="pizzaSize" value="md">
-              <label for="pizzaSizeMd" class="form-check-label">Medium</label> 
-            </div>
-            <div class="form-check">
-              <input type="radio" class="form-check-input" id="pizzaSizeLg" name="pizzaSize" value="lg">
-              <label for="pizzaSizeLg" class="form-check-label">Large</label> 
-            </div>
-            <div id="toppingList">            
-              <h4>Please select pizza toppings:</h4>
-            </div>
-            <button type="submit" class="btn btn-secondary">Add to Order</button>
           </form>
         </div>
         <div class="col-lg-5" id="rightPane">
