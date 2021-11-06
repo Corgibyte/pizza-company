@@ -77,3 +77,17 @@ Store.prototype.addAvailableTopping = function(topping) {
   }
   return true;
 };
+
+Store.prototype.removeAvailableTopping = function(topping) {
+  let removedTopping = false;
+  let updatedToppings = [];
+  this.availableToppings.forEach(function(thisTopping) {
+    if (thisTopping.name !== topping.name || thisTopping.price !== topping.price) {
+      updatedToppings.push(thisTopping);
+    } else {
+      removedTopping = true;
+    }
+  });
+  this.availableToppings = updatedToppings;
+  return removedTopping;
+};

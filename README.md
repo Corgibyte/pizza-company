@@ -40,7 +40,7 @@ Removes the toppings from the store's available toppings. If the listed topping 
 **Code:**
     const testStore = new Store();
     testStore.addAvailableTopping(new Topping("testA", 75));
-    testStore.removeAvailableTopping(new Topping("testA", 75))
+    testStore.removeAvailableTopping(new Topping("testA", 75));
     testStore.availableToppings;
 **Result:**
     true
@@ -50,7 +50,7 @@ Removes the toppings from the store's available toppings. If the listed topping 
 **Code:**
     const testStore = new Store();
     testStore.addAvailableTopping(new Topping("testA", 75));
-    testStore.removeAvailableTopping(new Topping("testB", 75))
+    testStore.removeAvailableTopping(new Topping("testB", 75));
     testStore.availableToppings;
 **Result:**
     false
