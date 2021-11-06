@@ -23,3 +23,12 @@
 #submitOrder {
   margin-bottom:2px;
 }
+
+.price {
+  font-weight:bold;
+  margin-top:2px;
+}
+
+.btn {
+  margin-top:2px; 
+}
