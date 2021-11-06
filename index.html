@@ -37,15 +37,15 @@
             <div id="pizzaOptions">
               <h4>Please select pizza size:</h4>
               <div class="form-check">
-                <input type="radio" class="form-check-input" id="pizzaSizeSm" name="pizzaSize" value="sm">
+                <input type="radio" class="form-check-input" id="pizzaSizeSm" name="pizzaSize" value="sm" required>
                 <label for="pizzaSizeSm" class="form-check-label">Small</label> 
               </div>
               <div class="form-check">
-                <input type="radio" class="form-check-input" id="pizzaSizeMd" name="pizzaSize" value="md">
+                <input type="radio" class="form-check-input" id="pizzaSizeMd" name="pizzaSize" value="md" required>
                 <label for="pizzaSizeMd" class="form-check-label">Medium</label> 
               </div>
               <div class="form-check">
-                <input type="radio" class="form-check-input" id="pizzaSizeLg" name="pizzaSize" value="lg">
+                <input type="radio" class="form-check-input" id="pizzaSizeLg" name="pizzaSize" value="lg" required>
                 <label for="pizzaSizeLg" class="form-check-label">Large</label> 
               </div>
               <div id="toppingList">            
@@ -75,6 +75,7 @@
       <div class="pizzaListContainer">
         <ol id="confirmationList">
         </ol>
+        <p class="price" id="confirmationTotal"></p>
       </div>
     </div>
   </div>

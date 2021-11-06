@@ -76,6 +76,14 @@ body {
   margin-top:2rem;
 }
 
+#confirmation > h2 {
+  margin-left:1rem;
+}
+
 #confirmation > div {
   margin-left:2rem;
+}
+
+p, h1, h2, h3, h4, li, label {
+  color:#FFBFA0;
 }

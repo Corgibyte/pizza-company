@@ -199,6 +199,7 @@ function updateConfirmation(order) {
       pizzaListSel.append(liString);
     }
   }
+  $("#confirmationTotal").text("Total: " + formatPrice(order.getCost()));
 }
 
 function addRemovePizzaListener(id) {
@@ -250,7 +251,7 @@ $(document).ready(function() {
     $("#welcome").hide();
     $("#order").show();
   });
-  
+
   $("#submitOrder").click(function() {
     if (currentOrder.hasPizza) {
       $("#order").hide();
