@@ -1,4 +1,33 @@
-### Tests
+## Pizza Company
+
+By Hannah Young
+
+A simple site that models an online ordering system for a pizza company. 
+
+### Technologies Used
+* HTML
+* CSS (including Bootstrap)
+* JavaScript (including JQuery)
+
+### Description
+
+This website showcases my ability to develop and deploy a website that uses more complicated logic. The ordering system dynamically creates a menu based on the data provided. It allows a user to add pizzas to an order and submit the final order. The backend is also able to support multiple orders per store.
+
+The website is visible on [GitHub Pages](https://Corgibyte.github.io/pizza-company).
+
+### Setup
+1. Download and install Git
+2. Download source folder while using terminal in desired parent directory using `git clone https://github.com/Corgibyte/pizza-company`
+3. Open `index.html` in your browser
+
+### Known bugs: 
+None at current time
+
+### License
+
+[Apache License 2.0](https://github.com/Corgibyte/number-neighborhood/blob/main/LICENSE), Copyright 2021 Hannah Young.
+
+## Testing
 
 #### Description: Store()
 Creates a Store object with no orders or available toppings.
