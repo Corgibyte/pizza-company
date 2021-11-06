@@ -57,3 +57,23 @@ Order.prototype.removePizza = function(pizzaId) {
     return true;
   }
 }
+
+function Store() {
+  this.currentId = 0;
+  this.orders = {};
+  this.availableToppings = [];
+}
+
+Store.prototype.addAvailableTopping = function(topping) {
+  let updatedTopping = false;
+  for (let i = 0; i < this.availableToppings.length; i++) {
+    if (this.availableToppings[i].name === topping.name) {
+      this.availableToppings[i] = topping;
+      updatedTopping = true;
+    }
+  }
+  if (!updatedTopping) {
+    this.availableToppings.push(topping);
+  }
+  return true;
+};

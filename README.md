@@ -16,7 +16,7 @@ Adds the given topping to the store's available toppings. If a topping of the sa
 **Test:** It should add a topping that isn't already available.
 **Code:**
     const testStore = new Store();
-    testStore.addAvailableToppings(new Topping("testA", 75));
+    testStore.addAvailableTopping(new Topping("testA", 75));
     testStore.availableToppings;
 **Result:**
     true
@@ -25,8 +25,8 @@ Adds the given topping to the store's available toppings. If a topping of the sa
 **Test:** It should not add a topping that is already available, but should update its price.
 **Code:**
     const testStore = new Store();
-    testStore.addAvailableToppings(new Topping("testA", 75));
-    testStore.addAvailableToppings(new Topping("testA", 50));
+    testStore.addAvailableTopping(new Topping("testA", 75));
+    testStore.addAvailableTopping(new Topping("testA", 50));
     testStore.availableToppings;
 **Result:**
     true
@@ -39,8 +39,8 @@ Removes the toppings from the store's available toppings. If the listed topping 
 **Test:** It should remove and return true a topping that is given and in the store's list.
 **Code:**
     const testStore = new Store();
-    testStore.addAvailableToppings(new Topping("testA", 75));
-    testStore.removeAvailableToppings(new Topping("testA", 75))
+    testStore.addAvailableTopping(new Topping("testA", 75));
+    testStore.removeAvailableTopping(new Topping("testA", 75))
     testStore.availableToppings;
 **Result:**
     true
@@ -49,8 +49,8 @@ Removes the toppings from the store's available toppings. If the listed topping 
 **Test:** It should not change a store's available toppings and return false if the given topping is not in the store's list.
 **Code:**
     const testStore = new Store();
-    testStore.addAvailableToppings(new Topping("testA", 75));
-    testStore.removeAvailableToppings(new Topping("testB", 75))
+    testStore.addAvailableTopping(new Topping("testA", 75));
+    testStore.removeAvailableTopping(new Topping("testB", 75))
     testStore.availableToppings;
 **Result:**
     false
