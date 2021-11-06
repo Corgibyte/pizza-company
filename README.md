@@ -228,15 +228,15 @@ Removes the given topping from the pizza. Topping must match both name and price
     Pizza{size:"md", [Topping{name:"testA", price:25}, Topping{name:"testB", price:50}]}
 
 #### Description: Pizza.prototype.getCost()
-Returns cost of the pizza (in cents).
+Returns cost of the pizza (in cents). Cost is determined by pizza size (sm = $12, md = $15, lg = $18) with toppings multiplied by a size modifier and added.
 
 **Test:** It should correctly calculate the cost of a pizza.
 **Code:** 
-    const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
+    const testToppings = [new Topping("testA", 125), new Topping("testB", 75)];
     const testPizza = new Pizza("md", testToppings);
     testPizza.getCost();
 **Result:**
-    TODO
+    
 
 #### Description: Topping(name, price)
 Creates a new topping object with the given name and price. Price must be in cents and must be a positive integer.
