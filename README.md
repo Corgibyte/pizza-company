@@ -120,7 +120,20 @@ Returns an int that represents the cost (in cents) of the current order.
     testOrder.addPizza(testPizza);
     testOrder.getCost();
 **Result:**
-    100;
+    1625
+
+**Test:** It should return the cost of the sum of all pizzas for an order with multiple pizzas.
+**Code:**
+    const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
+    const testPizza1 = new Pizza("md", testToppings);
+    testToppings.push(new Topping("testC", 50));
+    const testPizza2 = new Pizza("md", testToppings);
+    const testOrder = new Order();
+    testOrder.addPizza(testPizza1);
+    testOrder.addPizza(testPizza2);
+    testOrder.getCost();
+**Result:**
+    1625
 
 #### Description: Order.prototype.addPizza(pizza)
 Assigns the given pizza an id and adds it to the order. Will return true if pizza is added.

@@ -81,6 +81,16 @@ Order.prototype.removePizza = function(pizzaId) {
   }
 }
 
+Order.prototype.getCost = function() {
+  let totalCost = 0;
+  for (let i = 0; i < this.currentId + 1; i++) {
+    if (this.pizzas[i] !== undefined) {
+      totalCost += this.pizzas[i].getCost();
+    }
+  }
+  return totalCost;
+};
+
 function Store() {
   this.currentId = 0;
   this.orders = {};
