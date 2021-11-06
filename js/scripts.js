@@ -94,6 +94,14 @@ Order.prototype.getCost = function() {
   return totalCost;
 };
 
+Order.prototype.hasPizza = function() {
+  let hasPizza = false;
+  for (let i = 1; i <= this.currentId && !hasPizza; i++) {
+    hasPizza = this.pizzas[i] !== undefined;
+  }
+  return hasPizza;
+};
+
 function Store() {
   this.currentId = 0;
   this.orders = {};
@@ -143,8 +151,8 @@ function updateToppings() {
   const toppingSelector = $("#toppingList");
   for (let i = 0; i < pizzaStore.availableToppings.length; i++) {
     const divOpen = "<div class='form-check'>"
-    const inputLine = "<input type='checkbox' id='topping" + i + "' name='topping" + i + "' val='" + i + "'>";
-    const labelLine = "<label for='topping" + i + "'>" + pizzaStore.availableToppings[i].name + " (" + pizzaStore.availableToppings[i].price + ")</label>";
+    const inputLine = "<input class='form-check-input' type='checkbox' id='topping" + i + "' name='topping" + i + "' val='" + i + "'>";
+    const labelLine = "<label class='form-check-label' for='topping" + i + "'>" + pizzaStore.availableToppings[i].name + " (" + pizzaStore.availableToppings[i].price + ")</label>";
     const divClose = "</div>"
     toppingSelector.append(divOpen + inputLine + labelLine + divClose);
   }
@@ -160,10 +168,15 @@ function updateOrderOutput(order) {
         liString = liString.concat("<li>" + topping.name + "</li>");
       });
       liString = liString.concat("</ol>");
-      liString = liString.concat("<button id='removePizza" + i + "' class='btn btn-secondary'>Remove</button></li>");
+      liString = liString.concat("<button id='removePizza" + i + "' class='btn btn-sm btn-secondary'>Remove Pizza</button></li>");
       pizzaListSel.append(liString);
       addRemovePizzaListener(i);
     }
+  }
+  if (currentOrder.hasPizza()) {
+    $("#submitOrder").show();
+  } else {
+    $("#submitOrder").hide();
   }
 }
 

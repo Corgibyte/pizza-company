@@ -1,3 +1,25 @@
 #order {
   display:none;
 }
+
+#leftPane {
+  padding-left:3rem;
+}
+
+#toppingList {
+  margin-top:2rem;
+}
+
+#rightPane {
+  padding-right:5rem;
+  border:solid black 1px;
+  background-color:aqua;
+}
+
+#pizzaListContainer {
+  margin-left:1rem;
+}
+
+#submitOrder {
+  margin-bottom:2px;
+}
