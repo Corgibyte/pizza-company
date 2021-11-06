@@ -15,17 +15,29 @@
     <div>
       <h1 class="jumbotron">Pizza Company</h1>
     </div>
-    <div class="row">
+    <div id="welcome">
+      <h2>Welcome to Orbital Pizza.</h2>
+      <form id="welcomeForm" class="form-group">
+        <label for="nameForm">Name:</label>
+        <input type="text" id="nameForm" class="form-control">
+        <label for="latForm">Latitude:</label>
+        <input type="number" id="latForm" class="form-control" min=-90 max=90>
+        <label for="longForm">Longitude:</label>
+        <input type="number" id="longForm" class="form-control" min=-180 max=180>
+        <button type="submit" class="btn btn-secondary">New Order</button>
+      </form>
+    </div>
+    <div class="row" id="pizzaOrder">
       <div class="col-lg-8">
         <form id="pizzaForm" class="form-group">
           <p>Please select pizza size:</p>
           <div>
-            <input type="radio" id="pizzaSizeSm" name="pizzaSize" value="sm">
-            <label for="pizzaSizeSm">Small</label> 
-            <input type="radio" id="pizzaSizeMd" name="pizzaSize" value="md">
-            <label for="pizzaSizeMd">Medium</label> 
-            <input type="radio" id="pizzaSizeLg" name="pizzaSize" value="lg">
-            <label for="pizzaSizeLg">Large</label> 
+            <input type="radio" class="form-check-input" id="pizzaSizeSm" name="pizzaSize" value="sm">
+            <label for="pizzaSizeSm" class="form-check-label">Small</label> 
+            <input type="radio" class="form-check-input" id="pizzaSizeMd" name="pizzaSize" value="md">
+            <label for="pizzaSizeMd" class="form-check-label">Medium</label> 
+            <input type="radio" class="form-check-input" id="pizzaSizeLg" name="pizzaSize" value="lg">
+            <label for="pizzaSizeLg" class="form-check-label">Large</label> 
           </div>
           <p>Please select pizza toppings:</p>
           <div id="toppingList">            
