@@ -37,6 +37,29 @@ Pizza.prototype.removeTopping = function(topping) {
   return removedTopping;
 }
 
+Pizza.prototype.getCost = function() {
+  let cost = 0;
+  let toppingMod = 1.0;
+  switch (this.size) {
+    case ("sm"):
+      cost = 1200;
+      break;
+    case ("md"):
+      cost = 1500;
+      toppingMod = 1.25;
+      break;
+    case ("lg"):
+      cost = 1800;
+      toppingMod = 1.5;
+      break;
+  }
+  let toppingCost = 0;
+  this.toppings.forEach(function(topping) {
+    toppingCost += toppingMod * topping.price;
+  });
+  return Math.round(cost + toppingCost);
+};
+
 function Order() {
   this.pizzas = {};
   this.currentId = 0;
