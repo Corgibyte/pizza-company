@@ -80,7 +80,7 @@ Assigns an order ID to the given order and adds it to the store's orders.
     const testPizza1 = new Pizza("md", testToppings);
     const testPizza2 = new Pizza("md", testToppings);
     const testOrder1 = new Order();
-    const testOrder1 = new Order();
+    const testOrder2 = new Order();
     testOrder1.addPizza(testPizza1);
     testOrder2.addPizza(testPizza2);
     testStore.addOrder(testOrder1);

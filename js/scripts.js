@@ -91,3 +91,10 @@ Store.prototype.removeAvailableTopping = function(topping) {
   this.availableToppings = updatedToppings;
   return removedTopping;
 };
+
+Store.prototype.addOrder = function(order) {
+  this.currentId++;
+  order.id = this.currentId;
+  this.orders[this.currentId] = order;
+  return true;
+};
