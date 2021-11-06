@@ -12,11 +12,8 @@
 </head>
 <body>
   <div class="container">
-    <div>
-      <h1 class="jumbotron">Pizza Company</h1>
-    </div>
     <div id="welcome">
-      <h2>Welcome to Orbital Pizza.</h2>
+      <h1>Welcome to Orbital Pizza.</h1>
       <p>Orbital pizza is dedicated to delivering the finest pizzas anywhere in the Northern hemisphere within 5 minutes of order.</p>
       <form id="welcomeForm">
         <div class="form-row">
@@ -60,7 +57,7 @@
         </div>
         <div class="col-lg-5" id="rightPane">
           <h3>Current Order</h3>
-          <div id="pizzaListContainer">
+          <div class="pizzaListContainer">
             <h4>Pizzas:</h4>
             <ol id="pizzaList">
             </ol>
@@ -70,6 +67,14 @@
             <button id="submitOrder" class="btn btn-secondary">Submit Order</button>
           </div>
         </div>
+      </div>
+    </div>
+    <div id="confirmation">
+      <h2>Thank you for ordering with Orbital Pizza! Your pizza should arrive within 5 minutes.</h2>
+      <h3>Order:</h3>
+      <div class="pizzaListContainer">
+        <ol id="confirmationList">
+        </ol>
       </div>
     </div>
   </div>

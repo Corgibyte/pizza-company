@@ -1,5 +1,16 @@
+body {
+  background-color: #01172F;
+}
+
 #order {
   display:none;
+}
+
+#confirmation {
+  display:none;
+  border:solid #8EE3EF 2px;
+  background-color: #2176AE;
+  margin-top:2rem;
 }
 
 #leftPane {
@@ -10,13 +21,24 @@
   margin-top:2rem;
 }
 
-#rightPane {
-  padding-right:5rem;
-  border:solid black 1px;
-  background-color:aqua;
+#welcome {
+  border:solid #8EE3EF 2px;
+  background-color: #2176AE;
+  padding:0.5rem;
+  margin-top:2rem;
 }
 
-#pizzaListContainer {
+#order {
+  margin-top:2rem;
+}
+
+#rightPane {
+  padding-right:5rem;
+  border:solid #8EE3EF 2px;
+  background-color: #2176AE;
+}
+
+.pizzaListContainer {
   margin-left:1rem;
 }
 
@@ -45,5 +67,15 @@
 #pizzaOptions {
   padding-left:1rem;
   margin-bottom:1rem;
-  border: solid lightgray 1px;
+  border:solid #8EE3EF 2px;
+  background-color: #2176AE;
+}
+
+#confirmation > h3 {
+  margin-left:2rem;
+  margin-top:2rem;
+}
+
+#confirmation > div {
+  margin-left:2rem;
 }

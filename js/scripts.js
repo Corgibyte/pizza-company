@@ -152,7 +152,8 @@ function updateToppings() {
   for (let i = 0; i < pizzaStore.availableToppings.length; i++) {
     const divOpen = "<div class='form-check'>"
     const inputLine = "<input class='form-check-input' type='checkbox' id='topping" + i + "' name='topping" + i + "' val='" + i + "'>";
-    const labelLine = "<label class='form-check-label' for='topping" + i + "'>" + pizzaStore.availableToppings[i].name + " (" + pizzaStore.availableToppings[i].price + ")</label>";
+    const toppingPrice = formatPrice(pizzaStore.availableToppings[i].price);
+    const labelLine = "<label class='form-check-label' for='topping" + i + "'>" + pizzaStore.availableToppings[i].name + " (" + toppingPrice + ")</label>";
     const divClose = "</div>"
     toppingSelector.append(divOpen + inputLine + labelLine + divClose);
   }
@@ -167,8 +168,8 @@ function updateOrderOutput(order) {
       order.pizzas[i].toppings.forEach(function(topping) {
         liString = liString.concat("<li>" + topping.name + "</li>");
       });
-      const pizzaPrice = priceInCents(order.pizzas[i].getCost());
-      liString = liString.concat("<p class='price'>Price: $" + pizzaPrice[0] + "." + pizzaPrice[1] + "</p>");
+      const pizzaPrice = formatPrice(order.pizzas[i].getCost());
+      liString = liString.concat("<p class='price'>Price: " + pizzaPrice + "</p>");
       liString = liString.concat("</ol>");
       liString = liString.concat("<button id='removePizza" + i + "' class='btn btn-sm btn-secondary'>Remove Pizza</button></li>");
       pizzaListSel.append(liString);
@@ -177,10 +178,26 @@ function updateOrderOutput(order) {
   }
   if (currentOrder.hasPizza()) {
     $("#submitOrder").show();
-    const orderPrice = priceInCents(order.getCost());
-    $("#totalPrice").text("Total: $" + orderPrice[0] + "." + orderPrice[1]);
+    const orderPrice = formatPrice(order.getCost());
+    $("#totalPrice").text("Total: " + orderPrice);
   } else {
     $("#submitOrder").hide();
+  }
+}
+
+function updateConfirmation(order) {
+  const pizzaListSel = $("#confirmationList");
+  for (let i = 1; i <= order.currentId; i++) {
+    if (order.pizzas[i] !== undefined) {
+      let liString = "<li>" + order.pizzas[i].size + " pizza with: <ul>";
+      order.pizzas[i].toppings.forEach(function(topping) {
+        liString = liString.concat("<li>" + topping.name + "</li>");
+      });
+      const pizzaPrice = formatPrice(order.pizzas[i].getCost());
+      liString = liString.concat("<p class='price'>Price: " + pizzaPrice + "</p>");
+      liString = liString.concat("</ol></li>");
+      pizzaListSel.append(liString);
+    }
   }
 }
 
@@ -191,11 +208,11 @@ function addRemovePizzaListener(id) {
   });
 }
 
-function priceInCents(price) {
+function formatPrice(price) {
   const priceStr = price.toString();
   const priceDollars = parseInt(price / 100).toString();
   const priceCents = priceStr.slice(priceStr.length - 2);
-  return [priceDollars, priceCents];
+  return "$" + priceDollars + "." + priceCents;
 }
 
 $(document).ready(function() {
@@ -232,5 +249,13 @@ $(document).ready(function() {
     currentOrder = new Order($("#nameForm").val(), parseInt($("#latForm").val()), parseInt($("#longForm").val()));
     $("#welcome").hide();
     $("#order").show();
+  });
+  
+  $("#submitOrder").click(function() {
+    if (currentOrder.hasPizza) {
+      $("#order").hide();
+      $("#confirmation").show();
+      updateConfirmation(currentOrder);
+    }
   });
 });
