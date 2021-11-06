@@ -48,3 +48,12 @@ Order.prototype.addPizza = function(pizza) {
   this.pizzas[this.currentId] = pizza;
   return true;
 };
+
+Order.prototype.removePizza = function(pizzaId) {
+  if (this.pizzas[pizzaId] === undefined) {
+    return false;
+  } else {
+    this.pizzas[pizzaId] = undefined;
+    return true;
+  }
+}

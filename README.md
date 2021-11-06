@@ -150,7 +150,7 @@ Assigns the given pizza an id and adds it to the order. Will return true if pizz
 #### Description: Order.prototype.removePizza(pizzaId)
 Removes the given pizza, identified by its ID, from the order. Will return true if pizza is removed. 
 
-**Test:** It should remove a given pizza if it is on the order.
+**Test:** It should remove a given pizza if it is on the order, but retain the id.
 **Code:**
     const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
     const testPizza = new Pizza("md", testToppings);
@@ -160,7 +160,7 @@ Removes the given pizza, identified by its ID, from the order. Will return true 
     testOrder;
 **Result:**
     true
-    Order {pizzas:{}}
+    Order {pizzas:{1: undefined}}
 
 #### Description: Pizza(size, toppingsArray)
 Creates a pizza object with the given size and toppings array. Sizes can be "sm", "md", or "lg." Toppings must be given in an array of toppings where no two Topping elements share the same name, but can be an empty array.
