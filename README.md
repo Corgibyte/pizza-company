@@ -64,7 +64,7 @@ Assigns an order ID to the given order and adds it to the store's orders.
     const testStore = new Store();
     const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
     const testPizza = new Pizza("md", testToppings);
-    const testOrder = new Order();
+    const testOrder = new Order("test", 1, 1);
     testOrder.addPizza(testPizza);
     testStore.addOrder(testOrder);
     testOrder.id;
@@ -79,8 +79,8 @@ Assigns an order ID to the given order and adds it to the store's orders.
     const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
     const testPizza1 = new Pizza("md", testToppings);
     const testPizza2 = new Pizza("md", testToppings);
-    const testOrder1 = new Order();
-    const testOrder2 = new Order();
+    const testOrder1 = new Order("test", 1, 1);
+    const testOrder2 = new Order("test", 1, 1);
     testOrder1.addPizza(testPizza1);
     testOrder2.addPizza(testPizza2);
     testStore.addOrder(testOrder1);
@@ -91,15 +91,15 @@ Assigns an order ID to the given order and adds it to the store's orders.
     2;
     {1:Order{...},2:Order{...}}
 
-#### Description: Order()
+#### Description: Order(name, latCoord, longCoord)
 Creates an Order object without any assigned id or pizzas.
 
-**Test:** It should return an empty Order with empty properties for pizzas and no id property.
+**Test:** It should return an Order with empty properties for pizzas and no id property and given name, latitude and longitude..
 **Code:**
-    const testOrder = new Order();
+    const testOrder = new Order("test", 1, 1);
     testOrder;
 **Result:**
-    Order {pizzas: {}}
+    Order {pizzas: {}, name: "Test", latCoord: 1, longCoord: 1}
 
 
 #### Description: Order.prototype.getCost()
@@ -107,7 +107,7 @@ Returns an int that represents the cost (in cents) of the current order.
 
 **Test:** It should return 0 for an order with no pizzas in it.
 **Code:**
-    const testOrder = new Order();
+    const testOrder = new Order("test", 1, 1);
     testOrder.getCost();
 **Result:**
     0;
@@ -116,7 +116,7 @@ Returns an int that represents the cost (in cents) of the current order.
 **Code:**
     const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
     const testPizza = new Pizza("md", testToppings);
-    const testOrder = new Order();
+    const testOrder = new Order("test", 1, 1);
     testOrder.addPizza(testPizza);
     testOrder.getCost();
 **Result:**
@@ -128,7 +128,7 @@ Returns an int that represents the cost (in cents) of the current order.
     const testPizza1 = new Pizza("md", testToppings);
     testToppings.push(new Topping("testC", 50));
     const testPizza2 = new Pizza("md", testToppings);
-    const testOrder = new Order();
+    const testOrder = new Order("test", 1, 1);
     testOrder.addPizza(testPizza1);
     testOrder.addPizza(testPizza2);
     testOrder.getCost();
@@ -142,7 +142,7 @@ Assigns the given pizza an id and adds it to the order. Will return true if pizz
 **Code:**
     const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
     const testPizza = new Pizza("md", testToppings);
-    const testOrder = new Order();
+    const testOrder = new Order("test", 1, 1);
     testOrder.addPizza(testPizza);
     testOrder;
 **Result:**
@@ -153,7 +153,7 @@ Assigns the given pizza an id and adds it to the order. Will return true if pizz
     const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
     const testPizza1 = new Pizza("md", testToppings);
     const testPizza2 = new Pizza("md", testToppings);
-    const testOrder = new Order();
+    const testOrder = new Order("test", 1, 1);
     testOrder.addPizza(testPizza1);
     testOrder.addPizza(testPizza2);
     testOrder;
@@ -167,7 +167,7 @@ Removes the given pizza, identified by its ID, from the order. Will return true 
 **Code:**
     const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
     const testPizza = new Pizza("md", testToppings);
-    const testOrder = new Order();
+    const testOrder = new Order("test", 1, 1);
     testOrder.addPizza(testPizza);
     testOrder.removePizza(testPizza.id);
     testOrder;

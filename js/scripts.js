@@ -60,9 +60,12 @@ Pizza.prototype.getCost = function() {
   return Math.round(cost + toppingCost);
 };
 
-function Order() {
+function Order(name, latCoord, longCoord) {
   this.pizzas = {};
   this.currentId = 0;
+  this.name = name;
+  this.latCoord = latCoord;
+  this.longCoord = longCoord;
 }
 
 Order.prototype.addPizza = function(pizza) {
@@ -134,6 +137,7 @@ Store.prototype.addOrder = function(order) {
 
 //UI Logic
 let pizzaStore = new Store();
+let currentOrder = {};
 
 function updateToppings() {
   const toppingSelector = $("#toppingList");
@@ -178,5 +182,10 @@ $(document).ready(function() {
     pizzaStore.addOrder(newOrder);
     updateOrderOutput(newOrder);
     console.log(newOrder);
+  });
+
+  $("#welcomeForm").submit(function(event) {
+    event.preventDefault();
+
   });
 });
