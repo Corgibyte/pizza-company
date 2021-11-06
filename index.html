@@ -17,14 +17,19 @@
     </div>
     <div id="welcome">
       <h2>Welcome to Orbital Pizza.</h2>
-      <form id="welcomeForm" class="form-group">
-        <label for="nameForm">Name:</label>
-        <input type="text" id="nameForm" class="form-control">
-        <label for="latForm">Latitude:</label>
-        <input type="number" id="latForm" class="form-control" min=-90 max=90>
-        <label for="longForm">Longitude:</label>
-        <input type="number" id="longForm" class="form-control" min=-180 max=180>
-        <button type="submit" class="btn btn-secondary">New Order</button>
+      <form id="welcomeForm">
+        <div class="form-row">
+          <div class="form-group col-lg-6">
+            <input type="text" id="nameForm" class="form-control" placeholder="Name">
+          </div>
+          <div class="form-group col-lg-3">
+            <input type="number" id="latForm" class="form-control" min=-90 max=90 placeholder="Latitude">
+          </div>
+          <div class="form-group col-lg-3">
+            <input type="number" id="longForm" class="form-control" min=-180 max=180 placeholder="Longitude">
+          </div>
+          <button type="submit" class="btn btn-secondary">New Order</button>
+        </div>
       </form>
     </div>
     <div id="order">

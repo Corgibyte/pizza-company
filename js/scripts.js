@@ -199,7 +199,16 @@ function priceInCents(price) {
 }
 
 $(document).ready(function() {
-  const testToppings = [new Topping("pepperoni", 125), new Topping("mushrooms", 200), new Topping("carrots", 111)];
+  const testToppings = [new Topping("pepperoni", 125),
+    new Topping("mushrooms", 133), 
+    new Topping("pineapple", 144),
+    new Topping("live bees", 2217),
+    new Topping("beans", 168),
+    new Topping("sausage", 456),
+    new Topping("carrots", 133),
+    new Topping("crystallized hope", 456),
+    new Topping("chitin", 98),
+    new Topping("thread", 208)];
   testToppings.forEach(function(topping) {
     pizzaStore.addAvailableTopping(topping);
   });
@@ -215,6 +224,7 @@ $(document).ready(function() {
     }
     currentOrder.addPizza(new Pizza($("input[name='pizzaSize']:checked").val(), toppings));
     updateOrderOutput(currentOrder);
+    $("#pizzaForm").trigger("reset");
   });
 
   $("#welcomeForm").submit(function(event) {
