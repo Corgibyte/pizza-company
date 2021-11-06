@@ -131,3 +131,37 @@ Store.prototype.addOrder = function(order) {
   this.orders[this.currentId] = order;
   return true;
 };
+
+//UI Logic
+let pizzaStore = new Store();
+
+function updateToppings() {
+  const toppingSelector = $("#toppingList");
+  for (let i = 0; i < pizzaStore.availableToppings.length; i++) {
+    const inputLine = "<input type='checkbox' id='topping" + i + "' name='topping" + i + "' val='" + i + "'>";
+    const labelLine = "<label for='topping" + i + "'>" + pizzaStore.availableToppings[i].name + " (" + pizzaStore.availableToppings[i].price + ")</label>";
+    toppingSelector.append(inputLine + labelLine);
+  }
+}
+
+$(document).ready(function() {
+  const testToppings = [new Topping("pepperoni", 125), new Topping("mushrooms", 200), new Topping("carrots", 111)];
+  testToppings.forEach(function(topping) {
+    pizzaStore.addAvailableTopping(topping);
+  });
+  updateToppings();
+
+  $("#pizzaForm").submit(function(event) {
+    event.preventDefault();
+    let newOrder = new Order();
+    let toppings = [];
+    for (let i = 0; i < pizzaStore.availableToppings.length; i++) {
+      if ($("#topping" + i).is(":checked")) {
+        toppings.push(pizzaStore.availableToppings[i]);
+      }
+    }
+    newOrder.addPizza(new Pizza($("input[pizzaSize]:checked").val(), toppings));
+    pizzaStore.addOrder(newOrder);
+    console.log(pizzaStore);
+  });
+});
