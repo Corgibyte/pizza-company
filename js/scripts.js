@@ -160,7 +160,7 @@ $(document).ready(function() {
         toppings.push(pizzaStore.availableToppings[i]);
       }
     }
-    newOrder.addPizza(new Pizza($("input[pizzaSize]:checked").val(), toppings));
+    newOrder.addPizza(new Pizza($("input[name='pizzaSize']:checked").val(), toppings));
     pizzaStore.addOrder(newOrder);
     console.log(pizzaStore);
   });
