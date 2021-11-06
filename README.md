@@ -10,7 +10,7 @@ Creates a Store object with no orders or available toppings.
 **Result:**
     Store {availableToppings: [], orders: {}}
 
-#### Description: Store.prototype.addAvailableToppings(topping)
+#### Description: Store.prototype.addAvailableTopping(topping)
 Adds the given topping to the store's available toppings. If a topping of the same name is available, it will update the price, but only list the topping once. It will return true if the toppings was able to be added or updated (even if the updated price is the same as the old). Will return false if the topping could not be added or updated.
 
 **Test:** It should add a topping that isn't already available.
@@ -33,7 +33,7 @@ Adds the given topping to the store's available toppings. If a topping of the sa
     true
     [Topping {name: "testA", price: 50}]
 
-#### Description: Store.prototype.removeAvailableToppings(topping)
+#### Description: Store.prototype.removeAvailableTopping(topping)
 Removes the toppings from the store's available toppings. If the listed topping is not found, no change will be made and the method will return false. If the topping is found and removed it will return true.
 
 **Test:** It should remove and return true a topping that is given and in the store's list.
