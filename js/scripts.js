@@ -22,3 +22,17 @@ Pizza.prototype.addTopping = function(topping) {
   }
   return true;
 };
+
+Pizza.prototype.removeTopping = function(topping) {
+  let removedTopping = false;
+  let updatedToppings = [];
+  this.toppings.forEach(function(thisTopping) {
+    if (thisTopping.name !== topping.name || thisTopping.price !== topping.price) {
+      updatedToppings.push(thisTopping);
+    } else {
+      removedTopping = true;
+    }
+  });
+  this.toppings = updatedToppings;
+  return removedTopping;
+}

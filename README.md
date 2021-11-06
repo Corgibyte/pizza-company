@@ -54,7 +54,7 @@ Removes the toppings from the store's available toppings. If the listed topping 
     testStore.availableToppings;
 **Result:**
     false
-    [Topping {name:"testA", cost:75}]
+    [Topping {name:"testA", price:75}]
 
 #### Description: Store.prototype.assignId(order) 
 Assigns an order ID to the given order and adds it to the store's orders.
@@ -148,7 +148,7 @@ Adds the given pizza to the order. Will return true if pizza is added.
     Order{pizzas:[testPizza1, testPizza2]}
 
 #### Description: Pizza(size, toppingsArray)
-Creates a pizza object with the given size and toppings array. Sizes can be "sm", "md", or "lg." Toppings must be given in an array of toppings, but can be an empty array.
+Creates a pizza object with the given size and toppings array. Sizes can be "sm", "md", or "lg." Toppings must be given in an array of toppings where no two Topping elements share the same name, but can be an empty array.
 
 **Test:** It should return a pizza with the given size and toppings.
 **Code:**
@@ -156,7 +156,7 @@ Creates a pizza object with the given size and toppings array. Sizes can be "sm"
     const testPizza1 = new Pizza("md", testToppings);
     testPizza1;
 **Result:**
-    Pizza{size:"md", [Topping{name:"testA", cost:25}, Topping{name:"testB", cost:75}]}
+    Pizza{size:"md", [Topping{name:"testA", price:25}, Topping{name:"testB", price:75}]}
 
 #### Description: Pizza.prototype.addTopping(topping)
 Adds the given topping to the pizza. If a topping with the same name already exists, it will update the price of the topping. Will return true if topping is added; otherwise will return false. 
@@ -168,7 +168,7 @@ Adds the given topping to the pizza. If a topping with the same name already exi
     testPizza.addTopping(new Topping("testC", 50));
     testPizza;
 **Result:**
-    Pizza{size:"md", [Topping{name:"testA", cost:25}, Topping{name:"testB", cost:75}, Topping{name:"testC", cost:50}]}
+    Pizza{size:"md", [Topping{name:"testA", price:25}, Topping{name:"testB", price:75}, Topping{name:"testC", price:50}]}
 
 **Test:** It should update the price of a given topping if it's already on the pizza.
 **Code:**
@@ -177,10 +177,10 @@ Adds the given topping to the pizza. If a topping with the same name already exi
     testPizza.addTopping(new Topping("testB", 50));
     testPizza;
 **Result:**
-    Pizza{size:"md", [Topping{name:"testA", cost:25}, Topping{name:"testB", cost:50}]}
+    Pizza{size:"md", [Topping{name:"testA", price:25}, Topping{name:"testB", price:50}]}
 
 #### Description: Pizza.prototype.removeTopping(topping)
-Removes the given topping from the pizza. Topping must match both name and price to be removed. If topping is removed will return, otherwise will return false.
+Removes the given topping from the pizza. Topping must match both name and price to be removed. If topping is removed will return true, otherwise will return false.
 
 **Test:** It should remove a given topping if it is on the pizza.
 **Code:**
@@ -190,9 +190,9 @@ Removes the given topping from the pizza. Topping must match both name and price
     testPizza;
 **Result:**
     true
-    Pizza{size:"md", [Topping{name:"testB", cost:75}]}
+    Pizza{size:"md", [Topping{name:"testB", price:75}]}
 
-**Test:** It should not remove a given topping to the pizza if it isn't on the pizza.
+**Test:** It should not remove a given topping to the pizza if the topping name isn't on the pizza.
 **Code:**
     const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
     const testPizza = new Pizza("md", testToppings);
@@ -200,7 +200,17 @@ Removes the given topping from the pizza. Topping must match both name and price
     testPizza;
 **Result:**
     false
-    Pizza{size:"md", [Topping{name:"testA", cost:25}, Topping{name:"testB", cost:50}]}
+    Pizza{size:"md", [Topping{name:"testA", price:25}, Topping{name:"testB", price:50}]}
+
+**Test:** It should not remove a given topping to the pizza if the topping name is on the pizza, but the price is difference
+**Code:**
+    const testToppings = [new Topping("testA", 25), new Topping("testB", 75)];
+    const testPizza = new Pizza("md", testToppings);
+    testPizza.removeTopping(new Topping("testA", 50));
+    testPizza;
+**Result:**
+    false
+    Pizza{size:"md", [Topping{name:"testA", price:25}, Topping{name:"testB", price:50}]}
 
 #### Description: Pizza.prototype.getCost()
 Returns cost of the pizza (in cents).
@@ -221,4 +231,4 @@ Creates a new topping object with the given name and price. Price must be in cen
     const testTopping = new Topping("testA", 50);
     testTopping;
 **Result:**
-    Topping{name:"testA", 50}
+    Topping{name:"testA", price:50}
